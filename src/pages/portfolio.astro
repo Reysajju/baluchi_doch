@@ -5,14 +5,33 @@ const portfolioItems = [
   {
     title: 'Traditional Baluchi Dress',
     description: 'Custom embroidery with traditional patterns',
-    image: '/portfolio1.jpg'
+    image: '/imgs/baluchi_doch (1).jpeg'
   },
   {
     title: 'Modern Fusion Design',
     description: 'Contemporary take on classic Baluchi style',
-    image: '/portfolio2.jpg'
+    image: '/imgs/baluchi_doch (2).jpeg'
   },
-  // Add more portfolio items
+  {
+    title: 'Heritage Collection',
+    description: 'Preserving traditional aesthetics',
+    image: '/imgs/baluchi_doch (3).jpeg'
+  },
+  {
+    title: 'Elegant Designs',
+    description: 'Exquisite craftsmanship in every detail',
+    image: '/imgs/baluchi_doch (4).jpeg'
+  },
+  {
+    title: 'Custom Creations',
+    description: 'Personalized to your style',
+    image: '/imgs/baluchi_doch (5).jpeg'
+  },
+  {
+    title: 'Modern Elegance',
+    description: 'Contemporary interpretations of classic designs',
+    image: '/imgs/baluchi_doch (6).jpeg'
+  }
 ];
 ---
 
@@ -22,7 +41,7 @@ const portfolioItems = [
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {portfolioItems.map(item => (
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
           <img src={item.image} alt={item.title} class="w-full h-64 object-cover" />
           <div class="p-6">
             <h3 class="font-display text-xl text-primary mb-2">{item.title}</h3>

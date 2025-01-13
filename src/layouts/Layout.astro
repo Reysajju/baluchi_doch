@@ -10,6 +10,10 @@ interface Props {
 }
 
 const { title, description = "Transform your raw Baluchi dresses into unique, beautifully designed garments" } = Astro.props;
+
+// Social Media Meta Data
+const socialImage = '/social-preview.jpg';
+const siteUrl = 'https://baluchidoch.com';
 ---
 
 <!doctype html>
@@ -22,6 +26,47 @@ const { title, description = "Transform your raw Baluchi dresses into unique, be
     <meta name="generator" content={Astro.generator} />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>{title} | Baluchi Doch</title>
+
+    <!-- SEO Meta Tags -->
+    <link rel="canonical" href={siteUrl + Astro.url.pathname} />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="Baluchi dress, custom tailoring, Pakistani fashion, traditional clothing, dress customization, Punjab tailor" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content={`${title} | Baluchi Doch`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:url" content={siteUrl + Astro.url.pathname} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Baluchi Doch`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Baluchi Doch",
+        "image": "${socialImage}",
+        "description": "${description}",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Khan Bela",
+          "addressLocality": "Teh. Liquat Pur",
+          "addressRegion": "Punjab",
+          "addressCountry": "Pakistan"
+        },
+        "url": "${siteUrl}",
+        "sameAs": [
+          "https://www.tiktok.com/@blochidoch786",
+          "https://www.instagram.com/balochi3064"
+        ]
+      }
+    </script>
   </head>
   <body class="bg-background font-sans">
     <Header />
