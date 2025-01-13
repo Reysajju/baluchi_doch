@@ -18,6 +18,7 @@ const heroImages = [
     title: 'Timeless Beauty',
     description: 'Celebrating the art of Baluchi craftsmanship'
   },
+  // Placeholders for the remaining 7 images - update URLs when available
   {
     url: '/imgs/baluchi_doch (4).jpeg',
     title: 'Contemporary Designs',
@@ -54,30 +55,32 @@ const heroImages = [
     description: 'Traditional meets modern'
   }
 ];
+
+// Rest of your existing constants (features, steps, testimonials) remain the same
 ---
 
 <Layout title="Welcome">
-  <main class="min-h-screen">
-    <div class="h-screen">
-      <ImageSlider images={heroImages} fullscreen={true}>
-        <div class="relative z-20 h-full flex items-center justify-center">
-          <div class="text-center text-white px-4 hero-content max-w-4xl mx-auto">
-            <h1 class="font-display text-4xl sm:text-5xl md:text-7xl mb-4 sm:mb-6 opacity-0 translate-y-8 animate-fade-in-up">
-              Elevate Your Baluchi Dress
-            </h1>
-            <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 opacity-0 translate-y-8 animate-fade-in-up animation-delay-300">
-              Specializing in Custom Baluchi Dress Tailoring | Based in Punjab, Pakistan
-            </p>
-            <a 
-              href="/contact" 
-              class="inline-block bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 opacity-0 translate-y-8 animate-fade-in-up animation-delay-600"
-            >
-              Get Started
-            </a>
-          </div>
+  <main>
+    <ImageSlider images={heroImages} fullscreen={true}>
+      <div class="relative z-20 h-full flex items-center justify-center">
+        <div class="text-center text-white px-4 hero-content">
+          <h1 class="font-display text-5xl md:text-7xl mb-6 opacity-0 translate-y-8 animate-fade-in-up">
+            Elevate Your Baluchi Dress
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 opacity-0 translate-y-8 animate-fade-in-up animation-delay-300">
+            Specializing in Custom Baluchi Dress Tailoring | Based in Punjab, Pakistan
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-block bg-white text-primary px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 opacity-0 translate-y-8 animate-fade-in-up animation-delay-600"
+          >
+            Get Started
+          </a>
         </div>
-      </ImageSlider>
-    </div>
+      </div>
+    </ImageSlider>
+
+    <!-- Rest of your existing sections remain the same -->
   </main>
 </Layout>
 

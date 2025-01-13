@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 ---
 
-<div class={`relative ${fullscreen ? 'h-[100vh]' : height} overflow-hidden group`}>
+<div class={`relative ${fullscreen ? 'h-screen' : height} overflow-hidden group`}>
   {overlay && (
     <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 z-10"></div>
   )}
@@ -27,7 +27,7 @@ const {
       <img
         src={image.url}
         alt={image.title}
-        class={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-1000 slider-image ${
+        class={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 slider-image ${
           index === 0 ? 'opacity-100' : 'opacity-0'
         }`}
         loading={index === 0 ? "eager" : "lazy"}
