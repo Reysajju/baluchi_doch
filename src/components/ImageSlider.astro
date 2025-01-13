@@ -1,0 +1,138 @@
+---
+interface Props {
+  images: {
+    url: string;
+    title: string;
+    description?: string;
+  }[];
+  fullscreen?: boolean;
+  height?: string;
+  overlay?: boolean;
+}
+
+const { 
+  images, 
+  fullscreen = false, 
+  height = "h-96",
+  overlay = true 
+} = Astro.props;
+---
+
+<div class={`relative ${fullscreen ? 'h-screen' : height} overflow-hidden group`}>
+  {overlay && (
+    <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 z-10"></div>
+  )}
+  <div class="absolute inset-0 z-0">
+    {images.map((image, index) => (
+      <img
+        src={image.url}
+        alt={image.title}
+        class={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 slider-image ${
+          index === 0 ? 'opacity-100' : 'opacity-0'
+        }`}
+        loading={index === 0 ? "eager" : "lazy"}
+      />
+    ))}
+  </div>
+  
+  <!-- Navigation Arrows -->
+  <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 slider-prev">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+  <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 slider-next">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+
+  <!-- Dots Navigation -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+    {images.map((_, index) => (
+      <button
+        class={`w-2 h-2 rounded-full transition-all duration-300 slider-dot ${
+          index === 0 ? 'bg-white' : 'bg-white/50'
+        }`}
+        data-index={index}
+      ></button>
+    ))}
+  </div>
+
+  <slot />
+</div>
+
+<script>
+class ImageSlider {
+  private currentImage = 0;
+  private images: NodeListOf<Element>;
+  private dots: NodeListOf<Element>;
+  private container: Element;
+  private autoplayInterval: number;
+
+  constructor(container: Element) {
+    this.container = container;
+    this.images = container.querySelectorAll('.slider-image');
+    this.dots = container.querySelectorAll('.slider-dot');
+    
+    this.setupEventListeners();
+    this.startAutoplay();
+  }
+
+  private setupEventListeners() {
+    const prevBtn = this.container.querySelector('.slider-prev');
+    const nextBtn = this.container.querySelector('.slider-next');
+    
+    prevBtn?.addEventListener('click', () => this.prevImage());
+    nextBtn?.addEventListener('click', () => this.nextImage());
+    
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToImage(index));
+    });
+  }
+
+  private updateSlider() {
+    this.images.forEach((image, index) => {
+      image.classList.toggle('opacity-100', index === this.currentImage);
+      image.classList.toggle('opacity-0', index !== this.currentImage);
+    });
+
+    this.dots.forEach((dot, index) => {
+      dot.classList.toggle('bg-white', index === this.currentImage);
+      dot.classList.toggle('bg-white/50', index !== this.currentImage);
+    });
+  }
+
+  private nextImage() {
+    this.currentImage = (this.currentImage + 1) % this.images.length;
+    this.updateSlider();
+  }
+
+  private prevImage() {
+    this.currentImage = (this.currentImage - 1 + this.images.length) % this.images.length;
+    this.updateSlider();
+  }
+
+  private goToImage(index: number) {
+    this.currentImage = index;
+    this.updateSlider();
+  }
+
+  private startAutoplay() {
+    this.autoplayInterval = setInterval(() => this.nextImage(), 5000);
+    
+    this.container.addEventListener('mouseenter', () => {
+      clearInterval(this.autoplayInterval);
+    });
+    
+    this.container.addEventListener('mouseleave', () => {
+      this.autoplayInterval = setInterval(() => this.nextImage(), 5000);
+    });
+  }
+}
+
+// Initialize all sliders on the page
+document.querySelectorAll('.relative').forEach(container => {
+  new ImageSlider(container);
+});
+</script>

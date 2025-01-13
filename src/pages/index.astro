@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImageSlider from '../components/ImageSlider.astro';
+
+const heroImages = [
+  {
+    url: '/imgs/baluchi_doch (1).jpeg',
+    title: 'Traditional Baluchi Elegance',
+    description: 'Handcrafted with love and tradition'
+  },
+  {
+    url: '/imgs/baluchi_doch (2).jpeg',
+    title: 'Modern Baluchi Fashion',
+    description: 'Where tradition meets contemporary style'
+  },
+  {
+    url: '/imgs/baluchi_doch (3).jpeg',
+    title: 'Timeless Beauty',
+    description: 'Celebrating the art of Baluchi craftsmanship'
+  },
+  // Placeholders for the remaining 7 images - update URLs when available
+  {
+    url: '/imgs/baluchi_doch (4).jpeg',
+    title: 'Contemporary Designs',
+    description: 'Modern interpretations of traditional styles'
+  },
+  {
+    url: '/imgs/baluchi_doch (5).jpeg',
+    title: 'Elegant Craftsmanship',
+    description: 'Attention to every detail'
+  },
+  {
+    url: '/imgs/baluchi_doch (6).jpeg',
+    title: 'Traditional Excellence',
+    description: 'Preserving cultural heritage'
+  },
+  {
+    url: '/imgs/baluchi_doch (7).jpeg',
+    title: 'Artistic Expression',
+    description: 'Where creativity meets tradition'
+  },
+  {
+    url: '/imgs/baluchi_doch (8).jpeg',
+    title: 'Cultural Heritage',
+    description: 'Celebrating Baluchi artistry'
+  },
+  {
+    url: '/imgs/baluchi_doch (9).jpeg',
+    title: 'Modern Elegance',
+    description: 'Contemporary Baluchi fashion'
+  },
+  {
+    url: '/imgs/baluchi_doch (10).jpeg',
+    title: 'Timeless Style',
+    description: 'Traditional meets modern'
+  }
+];
+
+// Rest of your existing constants (features, steps, testimonials) remain the same
+---
+
+<Layout title="Welcome">
+  <main>
+    <ImageSlider images={heroImages} fullscreen={true}>
+      <div class="relative z-20 h-full flex items-center justify-center">
+        <div class="text-center text-white px-4 hero-content">
+          <h1 class="font-display text-5xl md:text-7xl mb-6 opacity-0 translate-y-8 animate-fade-in-up">
+            Elevate Your Baluchi Dress
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 opacity-0 translate-y-8 animate-fade-in-up animation-delay-300">
+            Specializing in Custom Baluchi Dress Tailoring | Based in Punjab, Pakistan
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-block bg-white text-primary px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 opacity-0 translate-y-8 animate-fade-in-up animation-delay-600"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+    </ImageSlider>
+
+    <!-- Rest of your existing sections remain the same -->
+  </main>
+</Layout>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
